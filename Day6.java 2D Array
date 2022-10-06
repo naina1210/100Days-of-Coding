@@ -1,0 +1,52 @@
+/*You are given a  2D array. An hourglass in an array is a portion shaped like this:
+
+a b c
+  d
+e f g
+
+Output Format
+
+Print the answer to this problem on a single line.
+
+Sample Input
+
+1 1 1 0 0 0
+0 1 0 0 0 0
+1 1 1 0 0 0
+0 0 2 4 4 0
+0 0 0 2 0 0
+0 0 1 2 4 0
+Sample Output
+
+19
+Explanation
+
+The hourglass which has the largest sum is:
+
+2 4 4
+  2
+1 2 4 */
+
+
+import java.util.*;
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int arr[][]=new int[6][6];
+        for(int i=0;i<6;i++){
+            for(int j=0;j<6;j++){
+                arr[i][j]=sc.nextInt();
+            }
+        }
+        sc.close();
+        int temp=0,maxsum=Integer.MIN_VALUE;
+        for(int i=1;i<5;i++){
+            for(int j=1;j<5;j++){
+                temp+=arr[i-1][j-1]+arr[i-1][j]+arr[i-1][j+1] + arr[i][j]+ arr[i+1][j-1]+arr[i+1][j]+arr[i+1][j+1];
+                maxsum=Math.max(maxsum, temp);
+                temp=0;
+            } 
+        }
+        System.out.println(maxsum);
+    }
+}
